@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+:root {
+    --color-primary: #1e40af;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-darker: #1e3a8a;
+    --color-secondary: #059669;
+    --color-accent: #f59e0b;
+}
+
+.school-gradient {
+    background: linear-gradient(135deg, var(--color-primary, #1e40af) 0%, var(--color-primary-darker, #1e3a8a) 100%);
+}
+
