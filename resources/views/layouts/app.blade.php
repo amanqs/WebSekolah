@@ -250,6 +250,9 @@
         });
     </script>
 
+    <!-- Dedicated Accessibility Toolbar (Ramah Disabilitas Khusus SLB) -->
+    @include('partials.accessibility-toolbar')
+
     @livewireScripts
 </body>
 </html>
