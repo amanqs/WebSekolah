@@ -28,3 +28,4 @@ class AdminQuickActionsWidget extends Widget
         ];
     }
 }
+

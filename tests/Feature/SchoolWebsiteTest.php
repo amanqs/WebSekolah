@@ -150,6 +150,9 @@ class SchoolWebsiteTest extends TestCase
         $originalLevel = $settings->school_level;
         $originalTagline = $settings->tagline;
         $originalAddress = $settings->address;
+        $originalLogoLight = $settings->logo_light;
+        $originalLogoDark = $settings->logo_dark;
+        $originalFavicon = $settings->favicon;
 
         try {
             \Livewire\Livewire::test(\App\Filament\Pages\ManageSchoolSettings::class)
@@ -177,6 +180,9 @@ class SchoolWebsiteTest extends TestCase
             $settings->school_level = $originalLevel;
             $settings->tagline = $originalTagline;
             $settings->address = $originalAddress;
+            $settings->logo_light = $originalLogoLight;
+            $settings->logo_dark = $originalLogoDark;
+            $settings->favicon = $originalFavicon;
             $settings->save();
         }
     }

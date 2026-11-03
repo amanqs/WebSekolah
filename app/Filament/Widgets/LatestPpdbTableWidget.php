@@ -69,3 +69,4 @@ class LatestPpdbTableWidget extends BaseWidget
             ->paginated(false);
     }
 }
+

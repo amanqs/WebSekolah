@@ -43,3 +43,4 @@ class PpdbStatusChartWidget extends ChartWidget
         return 'doughnut';
     }
 }
+

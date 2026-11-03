@@ -43,3 +43,4 @@ class PostsCategoryChartWidget extends ChartWidget
         return 'bar';
     }
 }
+
