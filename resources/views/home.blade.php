@@ -242,7 +242,11 @@
                     <div class="max-w-sm mx-auto bg-white rounded-2xl p-4 border border-slate-200/80 shadow-md">
                         <div class="aspect-[3/4] rounded-xl overflow-hidden bg-slate-100 relative">
                             @if($settings->principal_photo)
-                                <img src="{{ asset('storage/' . $settings->principal_photo) }}" alt="{{ $settings->principal_name }}" class="w-full h-full object-cover">
+                                @php
+                                    $pPhoto = $settings->principal_photo;
+                                    $pPhotoUrl = (str_starts_with($pPhoto, 'http://') || str_starts_with($pPhoto, 'https://')) ? $pPhoto : asset('storage/' . $pPhoto);
+                                @endphp
+                                <img src="{{ $pPhotoUrl }}" alt="{{ $settings->principal_name }}" class="w-full h-full object-cover">
                             @else
                                 <div class="w-full h-full bg-gradient-to-tr from-blue-900 to-sky-700 flex items-center justify-center text-white">
                                     <svg class="w-24 h-24 text-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>

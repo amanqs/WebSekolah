@@ -7,7 +7,10 @@
     <!-- Banner Header -->
     <div class="py-14 sm:py-16 bg-[#0B1528] text-white relative overflow-hidden text-center">
         @if($page->banner_image)
-            <img src="{{ asset('storage/' . $page->banner_image) }}" alt="{{ $page->title }}" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none">
+            @php
+                $bannerUrl = (str_starts_with($page->banner_image, 'http://') || str_starts_with($page->banner_image, 'https://')) ? $page->banner_image : asset('storage/' . $page->banner_image);
+            @endphp
+            <img src="{{ $bannerUrl }}" alt="{{ $page->title }}" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/80 to-transparent"></div>
         @else
             <div class="absolute inset-0 bg-[radial-gradient(#ffffff12_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>

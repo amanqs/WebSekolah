@@ -13,8 +13,21 @@
             <!-- Col 1: School Identity (span 4) -->
             <div class="lg:col-span-4 space-y-5">
                 <div class="flex items-center gap-3.5">
-                    @if($settings->logo_dark || $settings->logo_light)
-                        <img src="{{ asset('storage/' . ($settings->logo_dark ?? $settings->logo_light)) }}" alt="{{ $settings->school_name }}" class="h-12 w-auto object-contain">
+                    @php
+                        $footerLogo = $settings->logo_dark ?? $settings->logo_light;
+                        $footerLogoUrl = null;
+                        if ($footerLogo) {
+                            $footerLogoUrl = (str_starts_with($footerLogo, 'http://') || str_starts_with($footerLogo, 'https://'))
+                                ? $footerLogo
+                                : asset('storage/' . $footerLogo);
+                        }
+                        $fallbackLogoUrl = asset('storage/branding/logo_slb_transparent.png');
+                    @endphp
+                    @if($footerLogoUrl)
+                        <img src="{{ $footerLogoUrl }}"
+                             onerror="this.onerror=null; this.src='{{ $fallbackLogoUrl }}';"
+                             alt="{{ $settings->school_name }}"
+                             class="h-12 w-auto object-contain">
                     @else
                         <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-950 via-blue-900 to-sky-700 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-blue-950/40 border-2 border-amber-400/40 shrink-0">
                             <svg class="w-7 h-7 text-amber-300" viewBox="0 0 24 24" fill="currentColor">

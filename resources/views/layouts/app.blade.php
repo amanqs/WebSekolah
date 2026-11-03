@@ -11,19 +11,27 @@
     <meta name="description" content="@yield('meta_description', $settings->tagline)">
     <meta name="keywords" content="sekolah, {{ $settings->school_name }}, {{ $settings->school_level }}, ppdb online, pendidikan unggul">
 
+    @php
+        $appLogo = $settings->logo_light;
+        $appLogoUrl = null;
+        if ($appLogo) {
+            $appLogoUrl = (str_starts_with($appLogo, 'http://') || str_starts_with($appLogo, 'https://')) ? $appLogo : asset('storage/' . $appLogo);
+        }
+        $appFavicon = $settings->favicon;
+        $appFaviconUrl = null;
+        if ($appFavicon) {
+            $appFaviconUrl = (str_starts_with($appFavicon, 'http://') || str_starts_with($appFavicon, 'https://')) ? $appFavicon : asset('storage/' . $appFavicon);
+        }
+    @endphp
     <!-- OpenGraph & Twitter Cards -->
     <meta property="og:title" content="@yield('title', $settings->school_name)">
     <meta property="og:description" content="@yield('meta_description', $settings->tagline)">
-    <meta property="og:image" content="@yield('meta_image', $settings->logo_light ? asset('storage/' . $settings->logo_light) : asset('images/default-og.jpg'))">
+    <meta property="og:image" content="@yield('meta_image', $appLogoUrl ?? asset('storage/branding/logo_slb_transparent.png'))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
     <!-- Favicon -->
-    @if($settings->favicon)
-        <link rel="icon" type="image/x-icon" href="{{ asset('storage/' . $settings->favicon) }}">
-    @else
-        <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2997/2997295.png">
-    @endif
+    <link rel="icon" type="image/png" href="{{ $appFaviconUrl ?? asset('storage/branding/logo_slb_transparent.png') }}">
 
     @php
         $hexToRgb = function($hex, $default = '30, 58, 138') {

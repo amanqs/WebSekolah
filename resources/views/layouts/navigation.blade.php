@@ -11,8 +11,21 @@
 
             <!-- Brand / Logo Area -->
             <a href="{{ route('home') }}" class="flex items-center gap-3 group shrink-0">
-                @if($settings->logo_light)
-                    <img src="{{ asset('storage/' . $settings->logo_light) }}" alt="{{ $settings->school_name }}" class="h-10 sm:h-11 w-auto object-contain">
+                @php
+                    $navLogo = $settings->logo_light;
+                    $navLogoUrl = null;
+                    if ($navLogo) {
+                        $navLogoUrl = (str_starts_with($navLogo, 'http://') || str_starts_with($navLogo, 'https://'))
+                            ? $navLogo
+                            : asset('storage/' . $navLogo);
+                    }
+                    $fallbackLogoUrl = asset('storage/branding/logo_slb_transparent.png');
+                @endphp
+                @if($navLogoUrl)
+                    <img src="{{ $navLogoUrl }}"
+                         onerror="this.onerror=null; this.src='{{ $fallbackLogoUrl }}';"
+                         alt="{{ $settings->school_name }}"
+                         class="h-10 sm:h-11 w-auto object-contain">
                 @else
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-blue-950 via-blue-900 to-sky-700 text-white flex items-center justify-center font-black text-lg shadow-md shadow-blue-950/20 border-2 border-amber-400/40 relative group-hover:scale-105 transition-transform duration-300 shrink-0">
                         <svg class="w-5 h-5 text-amber-300" viewBox="0 0 24 24" fill="currentColor">

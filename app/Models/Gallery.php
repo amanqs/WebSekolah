@@ -38,6 +38,10 @@ class Gallery extends Model
         }
 
         if ($this->media_path) {
+            if (str_starts_with($this->media_path, 'http://') || str_starts_with($this->media_path, 'https://')) {
+                return $this->media_path;
+            }
+
             return asset('storage/' . $this->media_path);
         }
 

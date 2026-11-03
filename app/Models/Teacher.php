@@ -54,6 +54,10 @@ class Teacher extends Model implements HasMedia
         }
 
         if ($this->photo) {
+            if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
+                return $this->photo;
+            }
+
             return asset('storage/' . $this->photo);
         }
 

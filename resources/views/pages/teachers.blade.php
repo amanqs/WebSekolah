@@ -77,7 +77,10 @@
                             ]) }}; modalOpen = true;"
                              class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 flex flex-col items-center text-center p-6 group cursor-pointer hover:-translate-y-1">
                             <div class="w-28 h-28 rounded-full overflow-hidden mb-4 border-2 border-slate-100 shadow-sm group-hover:scale-105 transition-transform duration-300 relative bg-slate-100">
-                                <img src="{{ $teacher->photo_url }}" alt="{{ $teacher->name }}" class="w-full h-full object-cover">
+                                <img src="{{ $teacher->photo_url }}"
+                                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($teacher->name) }}&background=1e40af&color=fff&size=256';"
+                                     alt="{{ $teacher->name }}"
+                                     class="w-full h-full object-cover">
                             </div>
 
                             <span class="inline-block mb-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider {{ $teacher->type === 'guru' ? 'bg-blue-50 text-blue-900' : 'bg-slate-100 text-slate-700' }}">
@@ -123,7 +126,10 @@
 
                 <div x-show="activeTeacher" class="text-center pt-2">
                     <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-slate-200 shadow-sm bg-slate-100">
-                        <img :src="activeTeacher?.photo" :alt="activeTeacher?.name" class="w-full h-full object-cover">
+                        <img :src="activeTeacher?.photo"
+                             x-on:error="$event.target.src='https://ui-avatars.com/api/?name=' + encodeURIComponent(activeTeacher?.name || 'Guru') + '&background=1e40af&color=fff&size=256'"
+                             :alt="activeTeacher?.name"
+                             class="w-full h-full object-cover">
                     </div>
 
                     <span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-blue-900 mb-2" x-text="activeTeacher?.position"></span>

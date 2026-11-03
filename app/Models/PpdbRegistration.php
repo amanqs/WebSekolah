@@ -93,6 +93,10 @@ class PpdbRegistration extends Model
     public function getPhotoUrlAttribute(): string
     {
         if ($this->file_photo) {
+            if (str_starts_with($this->file_photo, 'http://') || str_starts_with($this->file_photo, 'https://')) {
+                return $this->file_photo;
+            }
+
             return asset('storage/' . $this->file_photo);
         }
 

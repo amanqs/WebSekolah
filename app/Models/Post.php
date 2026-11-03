@@ -110,6 +110,10 @@ class Post extends Model implements HasMedia
         }
 
         if ($this->featured_image) {
+            if (str_starts_with($this->featured_image, 'http://') || str_starts_with($this->featured_image, 'https://')) {
+                return $this->featured_image;
+            }
+
             return asset('storage/' . $this->featured_image);
         }
 
