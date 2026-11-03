@@ -84,7 +84,11 @@ class PreReleaseAuditTest extends TestCase
         // 11. Kelulusan
         $this->get('/kelulusan')->assertStatus(200);
 
-        // 12. Custom 404
+        // 12. LPJ & E-Library Buku Non-Teks
+        $this->get('/lpj')->assertStatus(200);
+        $this->get('/buku-non-teks')->assertStatus(200);
+
+        // 13. Custom 404
         $this->get('/halaman-yang-pasti-tidak-ada-12345678')->assertStatus(404);
     }
 
@@ -110,6 +114,10 @@ class PreReleaseAuditTest extends TestCase
             '/admin/hero-slides',
             '/admin/ppdb-registrations',
             '/admin/graduations',
+            '/admin/lpjs',
+            '/admin/buku-non-teks',
+            '/admin/system-maintenance',
+            '/admin/system-logs',
         ];
 
         foreach ($urls as $url) {
