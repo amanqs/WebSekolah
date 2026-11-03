@@ -38,11 +38,41 @@ class AdminPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
             ])
             ->sidebarCollapsibleOnDesktop()
-            ->sidebarWidth('18rem')
+            ->sidebarWidth('19.5rem')
             ->collapsedSidebarWidth('4.5rem')
             ->brandName(fn () => app(\App\Settings\GeneralSettings::class)->school_name ?? 'CMS Sekolah Admin')
-            ->brandLogo(fn () => app(\App\Settings\GeneralSettings::class)->logo_light ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->logo_light) : null)
-            ->darkModeBrandLogo(fn () => app(\App\Settings\GeneralSettings::class)->logo_dark ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->logo_dark) : (app(\App\Settings\GeneralSettings::class)->logo_light ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->logo_light) : null))
+            ->brandLogo(function () {
+                $settings = app(\App\Settings\GeneralSettings::class);
+                $logo = $settings->logo_light ? asset('storage/' . $settings->logo_light) : null;
+                $name = e($settings->school_name ?? 'SLB Negeri Grobogan');
+
+                if ($logo) {
+                    return new \Illuminate\Support\HtmlString(
+                        '<div class="flex items-center gap-2.5 overflow-hidden">' .
+                            '<img src="' . $logo . '" alt="' . $name . '" class="h-8 w-auto max-w-[34px] object-contain shrink-0 drop-shadow-sm" />' .
+                            '<span class="font-bold text-sm tracking-tight text-gray-950 dark:text-white truncate leading-tight">' . $name . '</span>' .
+                        '</div>'
+                    );
+                }
+
+                return new \Illuminate\Support\HtmlString('<span class="font-bold text-sm tracking-tight text-gray-950 dark:text-white truncate leading-tight">' . $name . '</span>');
+            })
+            ->darkModeBrandLogo(function () {
+                $settings = app(\App\Settings\GeneralSettings::class);
+                $logo = ($settings->logo_dark ?? $settings->logo_light) ? asset('storage/' . ($settings->logo_dark ?? $settings->logo_light)) : null;
+                $name = e($settings->school_name ?? 'SLB Negeri Grobogan');
+
+                if ($logo) {
+                    return new \Illuminate\Support\HtmlString(
+                        '<div class="flex items-center gap-2.5 overflow-hidden">' .
+                            '<img src="' . $logo . '" alt="' . $name . '" class="h-8 w-auto max-w-[34px] object-contain shrink-0 drop-shadow-sm" />' .
+                            '<span class="font-bold text-sm tracking-tight text-white truncate leading-tight">' . $name . '</span>' .
+                        '</div>'
+                    );
+                }
+
+                return new \Illuminate\Support\HtmlString('<span class="font-bold text-sm tracking-tight text-white truncate leading-tight">' . $name . '</span>');
+            })
             ->brandLogoHeight('2.5rem')
             ->favicon(fn () => app(\App\Settings\GeneralSettings::class)->favicon ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->favicon) : null)
             ->userMenuItems([

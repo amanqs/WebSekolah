@@ -25,7 +25,7 @@ class TeacherResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationLabel = 'Guru & Tenaga Kependidikan';
+    protected static ?string $navigationLabel = 'Guru & Tendik';
 
     protected static ?string $navigationGroup = 'Kesiswaan & Pengajar';
 

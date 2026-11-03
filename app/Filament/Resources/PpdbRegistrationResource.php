@@ -26,7 +26,7 @@ class PpdbRegistrationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
-    protected static ?string $navigationLabel = 'Pendaftar PPDB Online';
+    protected static ?string $navigationLabel = 'Pendaftar PPDB';
 
     protected static ?string $navigationGroup = 'Layanan PPDB & Kelulusan';
 

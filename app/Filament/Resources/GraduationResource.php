@@ -22,7 +22,7 @@ class GraduationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-check-badge';
 
-    protected static ?string $navigationLabel = 'Database Kelulusan Siswa';
+    protected static ?string $navigationLabel = 'Data Kelulusan';
 
     protected static ?string $navigationGroup = 'Layanan PPDB & Kelulusan';
 

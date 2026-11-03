@@ -25,7 +25,7 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'Halaman Profil Statis';
+    protected static ?string $navigationLabel = 'Halaman Statis';
 
     protected static ?string $navigationGroup = 'Tampilan & Konten Website';
 

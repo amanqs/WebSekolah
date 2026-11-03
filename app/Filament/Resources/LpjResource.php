@@ -26,7 +26,7 @@ class LpjResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-chart-bar';
 
-    protected static ?string $navigationLabel = 'Laporan Pertanggungjawaban (LPJ)';
+    protected static ?string $navigationLabel = 'Laporan LPJ';
 
     protected static ?string $modelLabel = 'Laporan Pertanggungjawaban';
 
