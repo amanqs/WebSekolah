@@ -298,4 +298,55 @@ class SchoolWebsiteTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/buku-non-teks');
         $response->assertStatus(200);
     }
+
+    public function test_custom_login_page_renders_quick_login_accounts(): void
+    {
+        $response = $this->get('/admin/login');
+        $response->assertStatus(200);
+        $response->assertSee('admin@sekolah.sch.id');
+        $response->assertSee('adminweb@sekolah.sch.id');
+        $response->assertSee('ppdb@sekolah.sch.id');
+        $response->assertSee('Pusat Akses Cepat');
+    }
+
+    public function test_custom_login_quick_login_works_for_developer(): void
+    {
+        \Livewire\Livewire::test(\App\Filament\Pages\Auth\CustomLogin::class)
+            ->call('fillCredentials', 'developer')
+            ->assertSet('data.email', 'admin@sekolah.sch.id')
+            ->assertSet('data.password', 'password');
+    }
+
+    public function test_super_admin_can_access_system_maintenance(): void
+    {
+        $admin = User::where('email', 'admin@sekolah.sch.id')->first();
+        $response = $this->actingAs($admin)->get('/admin/system-maintenance');
+        $response->assertStatus(200);
+        $response->assertSee('Pusat Kendali Pengembang');
+    }
+
+    public function test_super_admin_can_access_system_logs(): void
+    {
+        $admin = User::where('email', 'admin@sekolah.sch.id')->first();
+        $response = $this->actingAs($admin)->get('/admin/system-logs');
+        $response->assertStatus(200);
+        $response->assertSee('Pemeriksa Catatan Sistem');
+    }
+
+    public function test_non_super_admin_cannot_access_system_maintenance(): void
+    {
+        $ppdbAdmin = User::where('email', 'ppdb@sekolah.sch.id')->first();
+        $response = $this->actingAs($ppdbAdmin)->get('/admin/system-maintenance');
+        $response->assertStatus(403);
+    }
+
+    public function test_system_maintenance_actions_work(): void
+    {
+        $admin = User::where('email', 'admin@sekolah.sch.id')->first();
+        $this->actingAs($admin);
+
+        \Livewire\Livewire::test(\App\Filament\Pages\SystemMaintenance::class)
+            ->call('clearAllCache')
+            ->assertHasNoErrors();
+    }
 }

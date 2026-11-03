@@ -50,6 +50,14 @@ class DatabaseSeeder extends Seeder
         ]);
         $adminPpdb->assignRole($adminPpdbRole);
 
+        $adminWeb = User::firstOrCreate([
+            'email' => 'adminweb@sekolah.sch.id',
+        ], [
+            'name' => 'Admin Pengelola Web',
+            'password' => Hash::make('password'),
+        ]);
+        $adminWeb->assignRole($adminWebRole);
+
         // 3. Dynamic Navigations (Header & Footer)
         // Root menus
         $navProfil = Navigation::create([
