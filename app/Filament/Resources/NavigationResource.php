@@ -25,7 +25,7 @@ class NavigationResource extends Resource
 
     protected static ?string $navigationLabel = 'Navigasi Menu';
 
-    protected static ?string $navigationGroup = 'Sistem & Pengaturan';
+    protected static ?string $navigationGroup = 'Konfigurasi & Pengguna';
 
     protected static ?int $navigationSort = 2;
 

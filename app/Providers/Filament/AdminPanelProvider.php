@@ -5,6 +5,8 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -29,16 +31,36 @@ class AdminPanelProvider extends PanelProvider
             ->login(\App\Filament\Pages\Auth\CustomLogin::class)
             ->colors([
                 'primary' => Color::Blue,
-                'secondary' => Color::Emerald,
+                'secondary' => Color::Sky,
                 'warning' => Color::Amber,
                 'danger' => Color::Rose,
-                'info' => Color::Sky,
-                'success' => Color::Green,
+                'info' => Color::Cyan,
+                'success' => Color::Emerald,
             ])
+            ->sidebarCollapsibleOnDesktop()
+            ->sidebarWidth('18rem')
+            ->collapsedSidebarWidth('4.5rem')
             ->brandName(fn () => app(\App\Settings\GeneralSettings::class)->school_name ?? 'CMS Sekolah Admin')
             ->brandLogo(fn () => app(\App\Settings\GeneralSettings::class)->logo_light ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->logo_light) : null)
-            ->brandLogoHeight('2.25rem')
+            ->darkModeBrandLogo(fn () => app(\App\Settings\GeneralSettings::class)->logo_dark ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->logo_dark) : (app(\App\Settings\GeneralSettings::class)->logo_light ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->logo_light) : null))
+            ->brandLogoHeight('2.5rem')
             ->favicon(fn () => app(\App\Settings\GeneralSettings::class)->favicon ? asset('storage/' . app(\App\Settings\GeneralSettings::class)->favicon) : null)
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Lihat Website Publik')
+                    ->url(fn () => route('home'))
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->openUrlInNewTab(),
+            ])
+            ->navigationGroups([
+                NavigationGroup::make('Portal Berita & Publikasi')->icon('heroicon-o-newspaper'),
+                NavigationGroup::make('Pusat Dokumen & E-Library')->icon('heroicon-o-folder-open'),
+                NavigationGroup::make('Layanan PPDB & Kelulusan')->icon('heroicon-o-academic-cap'),
+                NavigationGroup::make('Kesiswaan & Pengajar')->icon('heroicon-o-user-group'),
+                NavigationGroup::make('Tampilan & Konten Website')->icon('heroicon-o-paint-brush'),
+                NavigationGroup::make('Konfigurasi & Pengguna')->icon('heroicon-o-cog-6-tooth'),
+                NavigationGroup::make('Developer & Maintenance')->icon('heroicon-o-cpu-chip'),
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -47,7 +69,11 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 \App\Filament\Widgets\DeveloperSystemWidget::class,
+                \App\Filament\Widgets\AdminQuickActionsWidget::class,
                 \App\Filament\Widgets\SchoolOverviewWidget::class,
+                \App\Filament\Widgets\PpdbStatusChartWidget::class,
+                \App\Filament\Widgets\PostsCategoryChartWidget::class,
+                \App\Filament\Widgets\LatestPpdbTableWidget::class,
                 Widgets\AccountWidget::class,
             ])
             ->middleware([
@@ -66,4 +92,3 @@ class AdminPanelProvider extends PanelProvider
             ]);
     }
 }
-

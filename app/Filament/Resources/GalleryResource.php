@@ -27,7 +27,7 @@ class GalleryResource extends Resource
 
     protected static ?string $navigationLabel = 'Galeri Foto & Video';
 
-    protected static ?string $navigationGroup = 'Tampilan & Konten';
+    protected static ?string $navigationGroup = 'Tampilan & Konten Website';
 
     protected static ?int $navigationSort = 2;
 

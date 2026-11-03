@@ -27,7 +27,7 @@ class PageResource extends Resource
 
     protected static ?string $navigationLabel = 'Halaman Profil Statis';
 
-    protected static ?string $navigationGroup = 'Tampilan & Konten';
+    protected static ?string $navigationGroup = 'Tampilan & Konten Website';
 
     protected static ?int $navigationSort = 3;
 

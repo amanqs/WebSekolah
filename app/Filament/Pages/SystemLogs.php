@@ -15,7 +15,7 @@ class SystemLogs extends Page
 
     protected static ?string $title = 'Pemeriksa Catatan Sistem & Error Log';
 
-    protected static ?string $navigationGroup = 'Developer & Sistem';
+    protected static ?string $navigationGroup = 'Developer & Maintenance';
 
     protected static ?int $navigationSort = 2;
 

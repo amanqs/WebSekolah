@@ -20,9 +20,9 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Kelola Pengguna & Peran';
 
-    protected static ?string $navigationGroup = 'Sistem & Pengaturan';
+    protected static ?string $navigationGroup = 'Konfigurasi & Pengguna';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function canAccess(): bool
     {

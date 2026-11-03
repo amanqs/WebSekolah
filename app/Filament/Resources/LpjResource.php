@@ -32,9 +32,9 @@ class LpjResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Laporan Pertanggungjawaban (LPJ)';
 
-    protected static ?string $navigationGroup = 'Publikasi & Dokumen';
+    protected static ?string $navigationGroup = 'Pusat Dokumen & E-Library';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 1;
 
     public static function canAccess(): bool
     {

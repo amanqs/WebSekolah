@@ -25,7 +25,7 @@ class FaqResource extends Resource
 
     protected static ?string $navigationLabel = 'Tanya Jawab (FAQ)';
 
-    protected static ?string $navigationGroup = 'Tampilan & Konten';
+    protected static ?string $navigationGroup = 'Tampilan & Konten Website';
 
     protected static ?int $navigationSort = 5;
 

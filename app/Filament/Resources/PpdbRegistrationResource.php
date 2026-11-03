@@ -28,7 +28,7 @@ class PpdbRegistrationResource extends Resource
 
     protected static ?string $navigationLabel = 'Pendaftar PPDB Online';
 
-    protected static ?string $navigationGroup = 'Modul PPDB Online';
+    protected static ?string $navigationGroup = 'Layanan PPDB & Kelulusan';
 
     protected static ?int $navigationSort = 1;
 

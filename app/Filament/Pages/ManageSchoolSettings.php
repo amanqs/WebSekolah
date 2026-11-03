@@ -26,7 +26,7 @@ class ManageSchoolSettings extends SettingsPage
 
     protected static ?string $title = 'Pengaturan Identitas & Tampilan Sekolah';
 
-    protected static ?string $navigationGroup = 'Sistem & Pengaturan';
+    protected static ?string $navigationGroup = 'Konfigurasi & Pengguna';
 
     protected static ?int $navigationSort = 1;
 

@@ -28,7 +28,7 @@ class DownloadResource extends Resource
 
     protected static ?string $navigationLabel = 'Pusat Unduhan';
 
-    protected static ?string $navigationGroup = 'Publikasi & Dokumen';
+    protected static ?string $navigationGroup = 'Pusat Dokumen & E-Library';
 
     protected static ?int $navigationSort = 3;
 

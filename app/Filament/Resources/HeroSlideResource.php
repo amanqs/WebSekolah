@@ -26,7 +26,7 @@ class HeroSlideResource extends Resource
 
     protected static ?string $navigationLabel = 'Hero Slider';
 
-    protected static ?string $navigationGroup = 'Tampilan & Konten';
+    protected static ?string $navigationGroup = 'Tampilan & Konten Website';
 
     protected static ?int $navigationSort = 1;
 

@@ -33,9 +33,9 @@ class BukuNonTeksResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Buku Nonteks Pelajaran';
 
-    protected static ?string $navigationGroup = 'Publikasi & Dokumen';
+    protected static ?string $navigationGroup = 'Pusat Dokumen & E-Library';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 2;
 
     public static function canAccess(): bool
     {

@@ -23,7 +23,7 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationLabel = 'Kategori Berita';
 
-    protected static ?string $navigationGroup = 'Publikasi & Artikel';
+    protected static ?string $navigationGroup = 'Portal Berita & Publikasi';
 
     protected static ?int $navigationSort = 2;
 

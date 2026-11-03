@@ -26,7 +26,7 @@ class SystemMaintenance extends Page
 
     protected static ?string $title = 'Pusat Kontrol Sistem & Maintenance Server';
 
-    protected static ?string $navigationGroup = 'Developer & Sistem';
+    protected static ?string $navigationGroup = 'Developer & Maintenance';
 
     protected static ?int $navigationSort = 1;
 

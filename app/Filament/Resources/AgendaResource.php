@@ -27,9 +27,9 @@ class AgendaResource extends Resource
 
     protected static ?string $navigationLabel = 'Agenda & Kegiatan';
 
-    protected static ?string $navigationGroup = 'Publikasi & Dokumen';
+    protected static ?string $navigationGroup = 'Portal Berita & Publikasi';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function canAccess(): bool
     {

@@ -28,7 +28,7 @@ class ExtracurricularResource extends Resource
 
     protected static ?string $navigationLabel = 'Ekstrakurikuler';
 
-    protected static ?string $navigationGroup = 'Civitas Akademika';
+    protected static ?string $navigationGroup = 'Kesiswaan & Pengajar';
 
     protected static ?int $navigationSort = 2;
 
