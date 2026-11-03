@@ -57,7 +57,7 @@
                                         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                                         <span>{{ $settings->school_name }}</span>
                                         <span class="text-slate-500">•</span>
-                                        <span class="text-white">Akreditasi A Unggul</span>
+                                        <span class="text-white">Akreditasi {{ $settings->accreditation ?? 'A Unggul' }}</span>
                                     </div>
 
                                     <!-- Headline -->
@@ -97,7 +97,7 @@
                                     <div class="pt-4 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-t border-slate-800">
                                         <div class="flex items-center gap-1.5">
                                             <span class="text-amber-400">★</span>
-                                            <span class="text-slate-300 font-medium">Kurikulum Merdeka</span>
+                                            <span class="text-slate-300 font-medium">{{ $settings->curriculum ?? 'Kurikulum Merdeka' }}</span>
                                         </div>
                                         <span class="text-slate-600">•</span>
                                         <div class="flex items-center gap-1.5">
@@ -132,8 +132,8 @@
                                         <!-- Card Footer Info -->
                                         <div class="p-4 bg-slate-900/95 border-t border-slate-800 flex items-center justify-between">
                                             <div>
-                                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider block">Akreditasi BAN-S/M</span>
-                                                <span class="font-display font-bold text-sm text-white">Nilai A (Unggul)</span>
+                                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider block">Akreditasi {{ $settings->accreditation_body ?? 'BAN-S/M' }}</span>
+                                                <span class="font-display font-bold text-sm text-white">Nilai {{ $settings->accreditation ?? 'A (Unggul)' }}</span>
                                             </div>
                                             <div class="text-right">
                                                 <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Standar Mutu</span>
@@ -311,32 +311,34 @@
     </section>
 
     <!-- 4. KEY STATISTICS BAR (Clean High-Contrast Navy Bar) -->
-    <section class="py-12 bg-[#0B1528] text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-800">
-                <div class="pt-3 md:pt-0">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-amber-400 block" data-counter="100" data-suffix="%">100%</span>
-                    <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Akreditasi A (Unggul)</span>
-                    <span class="text-[11px] text-slate-400 block mt-0.5">Sertifikasi Resmi BAN-S/M</span>
-                </div>
-                <div class="pt-3 md:pt-0">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-white block" data-counter="{{ $stats['teachers'] ?? 45 }}" data-suffix="+">{{ $stats['teachers'] ?? 45 }}+</span>
-                    <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Dewan Guru Profesional</span>
-                    <span class="text-[11px] text-slate-400 block mt-0.5">Tersertifikasi Pendidik</span>
-                </div>
-                <div class="pt-3 md:pt-0">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-sky-400 block" data-counter="{{ $stats['students'] ?? 850 }}" data-suffix="+">{{ $stats['students'] ?? 850 }}+</span>
-                    <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Siswa Aktif Berprestasi</span>
-                    <span class="text-[11px] text-slate-400 block mt-0.5">Generasi Emas Bangsa</span>
-                </div>
-                <div class="pt-3 md:pt-0">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-emerald-400 block" data-counter="{{ $stats['extracurriculars'] ?? 24 }}" data-suffix="+">{{ $stats['extracurriculars'] ?? 24 }}+</span>
-                    <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Cabang Ekstrakurikuler</span>
-                    <span class="text-[11px] text-slate-400 block mt-0.5">Sains, Seni & Olahraga</span>
+    @if($settings->enable_school_stats)
+        <section class="py-12 bg-[#0B1528] text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-800">
+                    <div class="pt-3 md:pt-0">
+                        <span class="font-display font-black text-3xl sm:text-4xl text-amber-400 block" data-counter="100" data-suffix="%">100%</span>
+                        <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Akreditasi {{ $settings->accreditation ?? 'A (Unggul)' }}</span>
+                        <span class="text-[11px] text-slate-400 block mt-0.5">Sertifikasi Resmi {{ $settings->accreditation_body ?? 'BAN-S/M' }}</span>
+                    </div>
+                    <div class="pt-3 md:pt-0">
+                        <span class="font-display font-black text-3xl sm:text-4xl text-white block" data-counter="{{ $stats['teachers'] }}" data-suffix="+">{{ $stats['teachers'] }}+</span>
+                        <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Dewan Guru Profesional</span>
+                        <span class="text-[11px] text-slate-400 block mt-0.5">Tersertifikasi Pendidik</span>
+                    </div>
+                    <div class="pt-3 md:pt-0">
+                        <span class="font-display font-black text-3xl sm:text-4xl text-sky-400 block" data-counter="{{ $stats['students'] }}" data-suffix="+">{{ $stats['students'] }}+</span>
+                        <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Peserta Didik Aktif</span>
+                        <span class="text-[11px] text-slate-400 block mt-0.5">Generasi Emas & Mandiri</span>
+                    </div>
+                    <div class="pt-3 md:pt-0">
+                        <span class="font-display font-black text-3xl sm:text-4xl text-emerald-400 block" data-counter="{{ $stats['classes'] }}" data-suffix=" Rombel">{{ $stats['classes'] }} Rombel</span>
+                        <span class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5 block">Rombongan Belajar</span>
+                        <span class="text-[11px] text-slate-400 block mt-0.5">Ruang Kelas & Lab Khusus</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <!-- 5. BERITA & WARTA TERKINI -->
     @if($settings->enable_latest_posts && $latestPosts->isNotEmpty())

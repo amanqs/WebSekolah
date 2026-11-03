@@ -73,6 +73,32 @@ class ManageSchoolSettings extends SettingsPage
                                     ->required()
                                     ->placeholder('Contoh: Unggul dalam Prestasi, Santun dalam Berpekerti'),
 
+                                Section::make('Akreditasi & Kurikulum')
+                                    ->description('Informasi akreditasi resmi dan kurikulum pembelajaran yang ditampilkan pada website')
+                                    ->collapsible()
+                                    ->schema([
+                                        Grid::make(3)->schema([
+                                            Select::make('accreditation')
+                                                ->label('Status Akreditasi')
+                                                ->options([
+                                                    'A (Unggul)' => 'Terakreditasi A (Unggul)',
+                                                    'B (Baik)' => 'Terakreditasi B (Baik)',
+                                                    'C (Cukup)' => 'Terakreditasi C (Cukup)',
+                                                    'Terakreditasi' => 'Terakreditasi',
+                                                    'Belum Terakreditasi' => 'Belum Terakreditasi',
+                                                ])
+                                                ->required(),
+                                            TextInput::make('accreditation_body')
+                                                ->label('Badan / Lembaga Akreditasi')
+                                                ->placeholder('BAN-S/M')
+                                                ->default('BAN-S/M'),
+                                            TextInput::make('curriculum')
+                                                ->label('Kurikulum yang Diterapkan')
+                                                ->placeholder('Kurikulum Merdeka')
+                                                ->default('Kurikulum Merdeka'),
+                                        ]),
+                                    ]),
+
                                 Grid::make(3)->schema([
                                     FileUpload::make('logo_light')
                                         ->label('Logo Utama (Light Mode)')
@@ -181,6 +207,37 @@ class ManageSchoolSettings extends SettingsPage
                                         ->url()
                                         ->placeholder('https://tiktok.com/@...'),
                                 ]),
+                            ]),
+
+                        Tabs\Tab::make('Data & Statistik Sekolah')
+                            ->icon('heroicon-o-chart-bar')
+                            ->schema([
+                                Section::make('Statistik Peserta Didik & Fasilitas Sekolah')
+                                    ->description('Angka-angka ini tampil secara dinamis pada bilah statistik (*Counter Animation*) di halaman beranda.')
+                                    ->schema([
+                                        Grid::make(4)->schema([
+                                            TextInput::make('total_students')
+                                                ->label('Jumlah Siswa Aktif')
+                                                ->numeric()
+                                                ->placeholder('Contoh: 240')
+                                                ->helperText('Jumlah total peserta didik saat ini.'),
+                                            TextInput::make('total_teachers')
+                                                ->label('Jumlah Guru (Pendidik)')
+                                                ->numeric()
+                                                ->placeholder('Otomatis jika kosong')
+                                                ->helperText('Biarkan kosong untuk menghitung otomatis dari menu Guru & Staf.'),
+                                            TextInput::make('total_classes')
+                                                ->label('Jumlah Rombel / Ruang Kelas')
+                                                ->numeric()
+                                                ->placeholder('Contoh: 12')
+                                                ->helperText('Jumlah rombongan belajar aktif.'),
+                                            TextInput::make('total_alumni')
+                                                ->label('Estimasi Total Alumni')
+                                                ->numeric()
+                                                ->placeholder('Contoh: 450')
+                                                ->helperText('Jumlah lulusan sekolah yang telah lulus.'),
+                                        ]),
+                                    ]),
                             ]),
 
                         Tabs\Tab::make('Tata Letak Beranda (Section Toggles)')

@@ -25,13 +25,17 @@ class HomeController extends Controller
         $faqs = $settings->enable_faq ? Faq::active()->take(8)->get() : collect();
         $upcomingAgendas = Agenda::upcoming()->take(4)->get();
 
-        // Calculate dynamic stats
+        // Calculate dynamic stats from settings with fallback
         $stats = [
-            'teachers' => Teacher::guru()->active()->count() ?: 45,
-            'staff' => Teacher::tendik()->active()->count() ?: 18,
-            'extracurriculars' => Extracurricular::active()->count() ?: 24,
-            'students' => 850, // Can be made dynamic or configured in settings
-            'accreditation' => 'A (Unggul)',
+            'teachers' => $settings->total_teachers ?: (Teacher::guru()->active()->count() ?: 35),
+            'staff' => Teacher::tendik()->active()->count() ?: 12,
+            'extracurriculars' => Extracurricular::active()->count() ?: 12,
+            'students' => $settings->total_students ?: 240,
+            'classes' => $settings->total_classes ?: 12,
+            'alumni' => $settings->total_alumni ?: 450,
+            'accreditation' => $settings->accreditation ?: 'A (Unggul)',
+            'accreditation_body' => $settings->accreditation_body ?: 'BAN-S/M',
+            'curriculum' => $settings->curriculum ?: 'Kurikulum Merdeka',
         ];
 
         return view('home', compact(

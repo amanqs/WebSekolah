@@ -19,6 +19,17 @@ class GeneralSettings extends Settings
     public ?string $logo_dark;
     public ?string $favicon;
 
+    // Akreditasi & Kurikulum
+    public ?string $accreditation;
+    public ?string $accreditation_body;
+    public ?string $curriculum;
+
+    // Statistik Sekolah
+    public ?int $total_students;
+    public ?int $total_teachers;
+    public ?int $total_classes;
+    public ?int $total_alumni;
+
     // Dynamic Color Palette
     public string $primary_color;
     public string $secondary_color;

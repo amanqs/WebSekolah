@@ -27,7 +27,7 @@
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-xs text-amber-400 font-bold">NPSN: {{ $settings->npsn }}</span>
                             <span class="text-slate-600">•</span>
-                            <span class="text-xs text-slate-300 font-medium">Terakreditasi A Unggul</span>
+                            <span class="text-xs text-slate-300 font-medium">Terakreditasi {{ $settings->accreditation ?? 'A Unggul' }}</span>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
             <p class="flex items-center gap-2">
                 <span class="inline-flex items-center gap-1.5 text-slate-300 font-semibold">
                     <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                    Terakreditasi BAN-S/M Unggul
+                    Terakreditasi {{ $settings->accreditation_body ?? 'BAN-S/M' }} {{ $settings->accreditation ?? 'Unggul' }}
                 </span>
                 <span>•</span>
                 <span>Portal Resmi Sekolah</span>

@@ -150,7 +150,7 @@
                 </span>
                 <span class="text-slate-600">•</span>
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="text-amber-400 font-bold">Akreditasi A Unggul</span>
+                    <span class="text-amber-400 font-bold">Akreditasi {{ $settings->accreditation ?? 'A Unggul' }}</span>
                 </span>
                 <span class="text-slate-600">•</span>
                 <span class="inline-flex items-center gap-1.5 hover:text-white transition">
