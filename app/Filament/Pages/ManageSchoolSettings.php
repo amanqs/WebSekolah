@@ -102,16 +102,25 @@ class ManageSchoolSettings extends SettingsPage
                                 Grid::make(3)->schema([
                                     FileUpload::make('logo_light')
                                         ->label('Logo Utama (Light Mode)')
+                                        ->helperText('Disarankan PNG transparan atau SVG untuk navbar terang.')
                                         ->image()
-                                        ->directory('branding'),
+                                        ->acceptedFileTypes(['image/png', 'image/webp', 'image/svg+xml', 'image/jpeg', 'image/gif'])
+                                        ->directory('branding')
+                                        ->imageEditorEmptyFillColor('rgba(0, 0, 0, 0)'),
                                     FileUpload::make('logo_dark')
                                         ->label('Logo Dark Mode')
+                                        ->helperText('Disarankan PNG transparan untuk footer navy gelap.')
                                         ->image()
-                                        ->directory('branding'),
+                                        ->acceptedFileTypes(['image/png', 'image/webp', 'image/svg+xml', 'image/jpeg', 'image/gif'])
+                                        ->directory('branding')
+                                        ->imageEditorEmptyFillColor('rgba(0, 0, 0, 0)'),
                                     FileUpload::make('favicon')
                                         ->label('Favicon (.ico / .png)')
+                                        ->helperText('Icon tab browser (PNG transparan atau .ico).')
                                         ->image()
-                                        ->directory('branding'),
+                                        ->acceptedFileTypes(['image/png', 'image/x-icon', 'image/vnd.microsoft.icon', 'image/svg+xml', 'image/jpeg', 'image/webp'])
+                                        ->directory('branding')
+                                        ->imageEditorEmptyFillColor('rgba(0, 0, 0, 0)'),
                                 ]),
 
                                 Section::make('Sambutan Kepala Sekolah')

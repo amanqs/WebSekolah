@@ -145,26 +145,40 @@ class SchoolWebsiteTest extends TestCase
         $admin = User::where('email', 'admin@sekolah.sch.id')->first();
         $this->actingAs($admin);
 
-        \Livewire\Livewire::test(\App\Filament\Pages\ManageSchoolSettings::class)
-            ->fillForm([
-                'school_name' => 'SMA Negeri 1 Unggulan Nasional',
-                'npsn' => '20109988',
-                'school_level' => 'SMA',
-                'tagline' => 'Cerdas, Berkarakter, Berakhlak Mulia',
-                'primary_color' => '#1E3A8A',
-                'secondary_color' => '#0284C7',
-                'accent_color' => '#F59E0B',
-                'phone' => '(021) 7890123',
-                'whatsapp' => '6281234567890',
-                'email' => 'info@sekolah.sch.id',
-                'address' => 'Jl. Pendidikan Karakter No. 100 Jakarta',
-                'ppdb_is_active' => true,
-                'graduation_is_active' => true,
-            ])
-            ->call('save')
-            ->assertHasNoFormErrors();
+        $settings = app(GeneralSettings::class);
+        $originalName = $settings->school_name;
+        $originalLevel = $settings->school_level;
+        $originalTagline = $settings->tagline;
+        $originalAddress = $settings->address;
 
-        $this->assertEquals('SMA Negeri 1 Unggulan Nasional', app(GeneralSettings::class)->school_name);
+        try {
+            \Livewire\Livewire::test(\App\Filament\Pages\ManageSchoolSettings::class)
+                ->fillForm([
+                    'school_name' => 'SLB Negeri Grobogan Test',
+                    'npsn' => $settings->npsn ?? '20109988',
+                    'school_level' => 'SLB',
+                    'tagline' => 'Cerdas, Berkarakter, Berakhlak Mulia',
+                    'primary_color' => '#1E3A8A',
+                    'secondary_color' => '#0284C7',
+                    'accent_color' => '#F59E0B',
+                    'phone' => '(021) 7890123',
+                    'whatsapp' => '6281234567890',
+                    'email' => 'info@sekolah.sch.id',
+                    'address' => 'Jl. Pendidikan Karakter No. 100 Jakarta',
+                    'ppdb_is_active' => true,
+                    'graduation_is_active' => true,
+                ])
+                ->call('save')
+                ->assertHasNoFormErrors();
+
+            $this->assertEquals('SLB Negeri Grobogan Test', app(GeneralSettings::class)->school_name);
+        } finally {
+            $settings->school_name = $originalName;
+            $settings->school_level = $originalLevel;
+            $settings->tagline = $originalTagline;
+            $settings->address = $originalAddress;
+            $settings->save();
+        }
     }
 
     public function test_super_admin_can_access_users_management(): void

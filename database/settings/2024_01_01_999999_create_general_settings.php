@@ -7,17 +7,17 @@ return new class extends SettingsMigration
     public function up(): void
     {
         // School Identity
-        $this->migrator->add('general.school_name', 'SMA Negeri 1 Prestasi Bangsa');
-        $this->migrator->add('general.npsn', '20109988');
-        $this->migrator->add('general.school_level', 'SMA');
-        $this->migrator->add('general.tagline', 'Mewujudkan Generasi Cerdas, Berkarakter, dan Berdaya Saing Global');
-        $this->migrator->add('general.principal_name', 'Drs. H. Mulyadi, M.Pd.');
-        $this->migrator->add('general.principal_nip', '19740512 199903 1 002');
-        $this->migrator->add('general.principal_speech', '<p>Selamat datang di situs resmi SMA Negeri 1 Prestasi Bangsa. Kami berkomitmen untuk menyelenggarakan pendidikan berkualitas tinggi yang mengedepankan pembinaan karakter, kecerdasan intelektual, serta keterampilan abad 21.</p><p>Melalui portal ini, kami berharap dapat memberikan kemudahan akses informasi bagi seluruh peserta didik, wali murid, alumni, dan masyarakat luas.</p>');
+        $this->migrator->add('general.school_name', 'SLB Negeri Grobogan');
+        $this->migrator->add('general.npsn', '20361280');
+        $this->migrator->add('general.school_level', 'SLB');
+        $this->migrator->add('general.tagline', 'Mewujudkan Peserta Didik yang Beriman, Mandiri, Terampil, dan Berakhlak Mulia');
+        $this->migrator->add('general.principal_name', 'Sudarni, S.Pd');
+        $this->migrator->add('general.principal_nip', '19710000000000');
+        $this->migrator->add('general.principal_speech', '<p>Selamat datang di situs resmi SLB Negeri Grobogan. Kami berkomitmen untuk menyelenggarakan pendidikan berkualitas tinggi bagi peserta didik berkebutuhan khusus yang mengedepankan pembinaan kemandirian, karakter, serta keterampilan vokasional.</p><p>Melalui portal ini, kami berharap dapat memberikan kemudahan akses informasi bagi seluruh peserta didik, wali murid, alumni, dan masyarakat luas.</p>');
         $this->migrator->add('general.principal_photo', null);
-        $this->migrator->add('general.logo_light', null);
-        $this->migrator->add('general.logo_dark', null);
-        $this->migrator->add('general.favicon', null);
+        $this->migrator->add('general.logo_light', 'branding/logo_slb_transparent.png');
+        $this->migrator->add('general.logo_dark', 'branding/logo_slb_transparent.png');
+        $this->migrator->add('general.favicon', 'branding/logo_slb_transparent.png');
 
         // Color Palette (Professional Blue: Biru Edukasi & Instansi)
         $this->migrator->add('general.primary_color', '#1E3A8A'); // Royal Navy Blue
