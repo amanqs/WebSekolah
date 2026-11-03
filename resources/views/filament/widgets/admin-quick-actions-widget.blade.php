@@ -62,18 +62,18 @@
                 <span class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">{{ $stats['total_teachers'] }} Pengajar</span>
             </a>
 
-            <!-- 4. Upload LPJ -->
-            <a href="{{ \App\Filament\Resources\LpjResource::getUrl('create') }}"
+            <!-- 4. Laporan LPJ -->
+            <a href="{{ \App\Filament\Resources\LpjResource::getUrl('index') }}"
                class="group flex flex-col items-center justify-center p-3.5 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50/70 dark:bg-white/5 hover:bg-purple-50/70 dark:hover:bg-purple-950/40 hover:border-purple-400 dark:hover:border-purple-500 transition text-center">
                 <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/60 text-purple-600 dark:text-purple-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                     📑
                 </div>
-                <span class="text-xs font-bold text-gray-900 dark:text-white mt-2 group-hover:text-purple-600 dark:group-hover:text-purple-400">Upload LPJ</span>
+                <span class="text-xs font-bold text-gray-900 dark:text-white mt-2 group-hover:text-purple-600 dark:group-hover:text-purple-400">Laporan LPJ</span>
                 <span class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">{{ $stats['total_lpj'] }} Laporan</span>
             </a>
 
             <!-- 5. Buku Non-Teks -->
-            <a href="{{ \App\Filament\Resources\BukuNonTeksResource::getUrl('create') }}"
+            <a href="{{ \App\Filament\Resources\BukuNonTeksResource::getUrl('index') }}"
                class="group flex flex-col items-center justify-center p-3.5 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50/70 dark:bg-white/5 hover:bg-sky-50/70 dark:hover:bg-sky-950/40 hover:border-sky-400 dark:hover:border-sky-500 transition text-center">
                 <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/60 text-sky-600 dark:text-sky-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                     📚
