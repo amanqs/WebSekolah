@@ -143,5 +143,43 @@ class PreReleaseAuditTest extends TestCase
         $this->get('/admin/users')->assertStatus(403);
         $this->get('/admin/manage-school-settings')->assertStatus(403);
     }
+
+    public function test_custom_login_security_in_production_and_local(): void
+    {
+        $loginPage = new \App\Filament\Pages\Auth\CustomLogin();
+
+        // 1. In Local + Debug
+        $this->app->detectEnvironment(fn() => 'local');
+        config(['app.debug' => true]);
+        $this->assertTrue($loginPage->isDevLoginEnabled());
+        $this->assertNotEmpty($loginPage->getDemoAccounts());
+
+        // 2. In Production
+        $this->app->detectEnvironment(fn() => 'production');
+        config(['app.debug' => false]);
+        $this->assertFalse($loginPage->isDevLoginEnabled());
+        $this->assertEmpty($loginPage->getDemoAccounts());
+
+        // Verify quickLogin and fillCredentials throw 403 in production
+        try {
+            $loginPage->quickLogin('developer');
+            $this->fail('Expected HttpException 403 was not thrown');
+        } catch (\Symfony\Component\HttpKernel\Exception\HttpException $e) {
+            $this->assertEquals(403, $e->getStatusCode());
+        }
+
+        try {
+            $loginPage->fillCredentials('developer');
+            $this->fail('Expected HttpException 403 was not thrown');
+        } catch (\Symfony\Component\HttpKernel\Exception\HttpException $e) {
+            $this->assertEquals(403, $e->getStatusCode());
+        }
+
+        // Test login page output in production does not show quick login buttons
+        $response = $this->get('/admin/login');
+        $response->assertStatus(200);
+        $response->assertDontSee('Masuk 1-Klik');
+        $response->assertDontSee('Kata Sandi Default Semua Akun');
+    }
 }
 

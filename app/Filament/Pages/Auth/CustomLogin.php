@@ -27,12 +27,30 @@ class CustomLogin extends BaseLogin
     }
 
     /**
+     * Cek apakah fitur login cepat developer diizinkan.
+     * Mutlak dinonaktifkan di lingkungan produksi (APP_ENV=production) demi keamanan publik.
+     * Hanya aktif di lingkungan local / testing dengan APP_DEBUG=true.
+     */
+    public function isDevLoginEnabled(): bool
+    {
+        if (app()->isProduction()) {
+            return false;
+        }
+
+        return (app()->isLocal() || app()->environment('testing')) && (bool) config('app.debug');
+    }
+
+    /**
      * Data akun demonstrasi / pengembangan
      *
      * @return array<string, array<string, string>>
      */
     public function getDemoAccounts(): array
     {
+        if (! $this->isDevLoginEnabled()) {
+            return [];
+        }
+
         return [
             'developer' => [
                 'role' => 'Developer / Super Admin',
@@ -72,6 +90,10 @@ class CustomLogin extends BaseLogin
      */
     public function fillCredentials(string $accountKey): void
     {
+        if (! $this->isDevLoginEnabled()) {
+            abort(403, 'Akses cepat dinonaktifkan di server produksi demi keamanan.');
+        }
+
         $accounts = $this->getDemoAccounts();
 
         if (! isset($accounts[$accountKey])) {
@@ -99,6 +121,10 @@ class CustomLogin extends BaseLogin
      */
     public function quickLogin(string $accountKey): ?LoginResponse
     {
+        if (! $this->isDevLoginEnabled()) {
+            abort(403, 'Akses cepat dinonaktifkan di server produksi demi keamanan.');
+        }
+
         $accounts = $this->getDemoAccounts();
 
         if (! isset($accounts[$accountKey])) {

@@ -18,20 +18,21 @@
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
 
-    <!-- Seksi Akses Cepat Developer & Administrator -->
+    @if($this->isDevLoginEnabled())
+    <!-- Seksi Akses Cepat Developer & Administrator (HANYA AKTIF DI LINGKUNGAN LOCAL & DEBUG) -->
     <div x-data="{ open: true, currentTab: 'developer' }" class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
         <div class="flex items-center justify-between gap-2 mb-3">
             <button type="button"
                     @click="open = !open"
-                    class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-primary-600 transition">
-                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary-50 dark:bg-primary-950 text-primary-600 dark:text-primary-400 font-mono text-[10px] font-black">⚡</span>
-                <span>Pusat Akses Cepat (Developer & Admin)</span>
+                    class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 hover:text-amber-800 transition">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 font-mono text-[10px] font-black">⚡</span>
+                <span>Pusat Akses Cepat (Local Dev Only)</span>
                 <svg :class="open ? 'rotate-180' : ''" class="w-3.5 h-3.5 transition-transform text-slate-400" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </button>
-            <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800">
-                ● Siap Digunakan
+            <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
+                Mode Uji Coba Lokal
             </span>
         </div>
 
@@ -89,6 +90,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <!-- System Health & Back to Home Footer -->
     <div class="mt-6 pt-4 border-t border-slate-200/80 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
@@ -98,11 +100,15 @@
         </a>
 
         <div class="flex items-center gap-2 font-mono text-[10px] text-slate-400">
-            <span>PHP {{ $meta['php_version'] }}</span>
-            <span>•</span>
-            <span>Laravel {{ $meta['laravel_version'] }}</span>
-            <span>•</span>
-            <span class="uppercase">{{ $meta['environment'] }}</span>
+            @if($this->isDevLoginEnabled())
+                <span>PHP {{ $meta['php_version'] }}</span>
+                <span>•</span>
+                <span>Laravel {{ $meta['laravel_version'] }}</span>
+                <span>•</span>
+                <span class="uppercase text-amber-600 font-semibold">{{ $meta['environment'] }}</span>
+            @else
+                <span>Sistem Terenkripsi & Terlindungi</span>
+            @endif
         </div>
     </div>
 </x-filament-panels::page.simple>
