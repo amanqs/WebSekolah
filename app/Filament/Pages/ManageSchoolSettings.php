@@ -34,7 +34,7 @@ class ManageSchoolSettings extends SettingsPage
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasRole('Super Admin') ?? false;
+        return auth()->user()?->hasAnyRole(['Super Admin', 'Admin Web']) ?? false;
     }
 
     public function form(Form $form): Form

@@ -64,7 +64,7 @@ class LatestPpdbTableWidget extends BaseWidget
                 Tables\Actions\Action::make('verify')
                     ->label('Buka Data')
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->url(fn (PpdbRegistration $record): string => url('/admin/ppdb-registrations/' . $record->id . '/edit')),
+                    ->url(fn (PpdbRegistration $record): string => \App\Filament\Resources\PpdbRegistrationResource::getUrl('edit', ['record' => $record])),
             ])
             ->paginated(false);
     }

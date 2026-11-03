@@ -34,7 +34,7 @@ class PpdbRegistrationResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['Super Admin', 'Admin PPDB']) ?? false;
+        return auth()->user()?->hasAnyRole(['Super Admin', 'Admin PPDB', 'Admin Web']) ?? false;
     }
 
     public static function form(Form $form): Form

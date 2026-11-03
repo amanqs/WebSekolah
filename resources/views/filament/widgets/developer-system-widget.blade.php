@@ -29,7 +29,7 @@
 
             <div class="flex items-center gap-2">
                 <x-filament::button
-                    :href="url('/admin/system-maintenance')"
+                    :href="\App\Filament\Pages\SystemMaintenance::getUrl()"
                     tag="a"
                     size="xs"
                     color="primary"
@@ -39,7 +39,7 @@
                 </x-filament::button>
 
                 <x-filament::button
-                    :href="url('/admin/system-logs')"
+                    :href="\App\Filament\Pages\SystemLogs::getUrl()"
                     tag="a"
                     size="xs"
                     color="gray"
