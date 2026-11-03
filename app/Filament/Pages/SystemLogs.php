@@ -174,3 +174,4 @@ class SystemLogs extends Page
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
 }
+

@@ -360,3 +360,4 @@ class SystemMaintenance extends Page
         return $output;
     }
 }
+
